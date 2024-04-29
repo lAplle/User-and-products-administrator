@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign up</title>
+        <meta charset="UTF-8" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+        />
+        <script
+            src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://www.google.com/recaptcha/api.js?render=6Ldsf5spAAAAANWdnDvr2sbtMlNkIx8TtjKhdP8c"></script>
+        <script>
+            $(document).ready(function () {
+                $("#submitButton").click(function () {
+                    grecaptcha.ready(function () {
+                        grecaptcha
+                            .execute(
+                                "6Ldsf5spAAAAANWdnDvr2sbtMlNkIx8TtjKhdP8c",
+                                { action: "validarUsuario" }
+                            )
+                            .then(function (token) {
+                                $("#form-signup").prepend(
+                                    '<input type="hidden" name="token" value="' +
+                                        token +
+                                        '">'
+                                );
+                                $("#form-signup").prepend(
+                                    '<input type="hidden" name="action" value="validarUsuario">'
+                                );
+                                $("#form-signup").submit();
+                            });
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Sign up</h1>
+        <form
+            id="form-signup"
+            action="process-signup.php"
+            method="post"
+            novalidate
+        >
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" autocomplete="name" />
+            </div>
+
+            <div>
+                <label for="email">Email:</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    autocomplete="email"
+                />
+            </div>
+
+            <div>
+                <label for="password">Password:</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    autocomplete="new-password"
+                />
+            </div>
+
+            <div>
+                <label for="password_confirmation">Confirm Password:</label>
+                <input
+                    type="password"
+                    id="password_confirmation"
+                    name="password_confirmation"
+                    autocomplete="new-password"
+                />
+            </div>
+            <button type="button" id="submitButton">Registrar</button>
+        </form>
+        <p>
+            Puedes iniciar sesión haciendo click <a href="login.php">aquí</a>.
+        </p>
+    </body>
+</html>
