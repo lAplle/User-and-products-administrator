@@ -1,1 +1,1 @@
-La base de esta app viene de reCAPTCHA-register-and-login, en esta versión ya incluye la gestión de productos y algunas mejoras en cuestión de seguridad.
+The core of this app comes from reCAPTCHA-register-and-login, in this version it already includes product management and some security improvements.
